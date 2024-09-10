@@ -8,8 +8,7 @@
 </head>
 <body>
     <header>
-        <h1>Welcome to Colored Knot Polynomials Website</h1>
-        <p>Sponsored by </p>
+        <h1 id="website-name">Welcome to  Colored  Knot Polynomials</h1>
     </header>
     <nav>
         <ul>
@@ -35,7 +34,7 @@
             <option value="5_1">5<sub>1</sub> (Cinquefoil Knot)</option>
             <option value="6_1">6<sub>1</sub> (Unknot)</option>
             <option value="6_2">6<sub>2</sub> (Another 6-Crossing Knot)</option>
-            <!-- Add more options up to 7 crossings -->
+            <!-- Add more options up to 7 crossings if needed -->
         </select>
         
         <fieldset id="polynomial-options">
@@ -75,10 +74,62 @@
         </form>
     </section>
     <footer>
-        <p>Sponsored by  | Owner: Vivek Kumar Singh </p>
+        <p>Owner: Vivek Kumar Singh</p>
     </footer>
     <script src="script.js"></script>
 </body>
 </html>
-
-
+document.getElementById('view-polynomials').addEventListener('click', function() {
+    const knot = document.getElementById('knot-select').value;
+    const polynomials = document.querySelectorAll('input[name="polynomial"]:checked');
+    
+    const polynomialData = {
+        '3_1': {
+            jones: 't + t^3',
+            alexander: '1 - t + t^2',
+            homflypt: '1 + t^2',
+        },
+        '4_1': {
+            jones: 't^2 + 1',
+            alexander: '1 + t^2 - t^4',
+            homflypt: '1 + t + t^2 + t^3',
+        },
+        '5_1': {
+            jones: 't^4 + t^2 + 1',
+            alexander: '1 - t + t^2 - t^3 + t^4',
+            homflypt: '1 + t + t^2 + t^3 + t^4',
+        },
+        '6_1': {
+            jones: '1',
+            alexander: '1',
+            homflypt: '1',
+        },
+        '6_2': {
+            jones: 't + t^3 + t^4',
+            alexander: '1 - t + t^2 - t^3 + t^4 - t^5',
+            homflypt: '1 + t + t^2 + t^3 + t^4 + t^5',
+        }
+    };
+    
+    let jonesPoly = '';
+    let alexanderPoly = '';
+    let homflyptPoly = '';
+    
+    polynomials.forEach(poly => {
+        switch(poly.value) {
+            case 'jones':
+                jonesPoly = polynomialData[knot]?.jones || 'N/A';
+                break;
+            case 'alexander':
+                alexanderPoly = polynomialData[knot]?.alexander || 'N/A';
+                break;
+            case 'homflypt':
+                homflyptPoly = polynomialData[knot]?.homflypt || 'N/A';
+                break;
+        }
+    });
+    
+    document.getElementById('jones-poly').textContent = jonesPoly;
+    document.getElementById('alexander-poly').textContent = alexanderPoly;
+    document.getElementById('homflypt-poly').textContent = homflyptPoly;
+});
