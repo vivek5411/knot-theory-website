@@ -47,17 +47,18 @@
             padding: 20px;
         }
 
-        #polynomials {
+        #polynomials, #homflypt, #kauffman {
             background-color: #f9f9f9;
             border: 1px solid #ddd;
             border-radius: 5px;
+            margin-bottom: 20px;
         }
 
-        #results p {
+        #results p, #homflypt-results p, #kauffman-results p {
             font-weight: bold;
         }
 
-        #results span {
+        #results span, #homflypt-results span, #kauffman-results span {
             color: #e74c3c; /* Red color for polynomial values */
         }
 
@@ -73,12 +74,14 @@
 </head>
 <body>
     <header>
-        <h1 id="website-name">Welcome to Colored  Knot Polynomials </h1>
+        <h1 id="website-name">Welcome to Colored Knot Polynomials Website</h1>
     </header>
     <nav>
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#polynomials">Knot Polynomials</a></li>
+            <li><a href="#homflypt">Colored HOMFLY-PT Polynomials</a></li>
+            <li><a href="#kauffman">Kauffman Polynomials</a></li>
             <li><a href="#draw-knot">Draw a Knot</a></li>
             <li><a href="#projects">Research & Projects</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -118,6 +121,42 @@
             <p>HOMFLY-PT Polynomial: <span id="homflypt-poly"></span></p>
         </div>
     </section>
+    <section id="homflypt">
+        <h2>Colored HOMFLY-PT Polynomials</h2>
+        <p>Input a parameter <code>r</code> to view the polynomial:</p>
+        
+        <label for="r-select">Select r:</label>
+        <select id="r-select">
+            <option value="1">r = 1</option>
+            <option value="2">r = 2</option>
+            <option value="3">r = 3</option>
+        </select>
+        
+        <button id="view-homflypt">View HOMFLY-PT Polynomial</button>
+        
+        <div id="homflypt-results">
+            <h3>HOMFLY-PT Polynomial:</h3>
+            <p id="homflypt-poly"></p>
+        </div>
+    </section>
+    <section id="kauffman">
+        <h2>Kauffman Polynomials (K[r])</h2>
+        <p>Input a parameter <code>r</code> to view the polynomial:</p>
+        
+        <label for="r-kauffman">Select r:</label>
+        <select id="r-kauffman">
+            <option value="1">r = 1</option>
+            <option value="2">r = 2</option>
+            <option value="3">r = 3</option>
+        </select>
+        
+        <button id="view-kauffman">View Kauffman Polynomial</button>
+        
+        <div id="kauffman-results">
+            <h3>Kauffman Polynomial:</h3>
+            <p id="kauffman-poly"></p>
+        </div>
+    </section>
     <section id="draw-knot">
         <h2>Draw a Knot</h2>
         <p>Use the tool below to draw a knot and get its polynomials:</p>
@@ -139,7 +178,7 @@
         </form>
     </section>
     <footer>
-        <p>Owner: Vivek</p>
+        <p>Owner: Vivek Kumar Singh</p>
     </footer>
     <script>
         document.getElementById('view-polynomials').addEventListener('click', function() {
@@ -179,22 +218,44 @@
             let homflyptPoly = 'N/A';
             
             polynomials.forEach(poly => {
-                switch(poly.value) {
-                    case 'jones':
-                        jonesPoly = polynomialData[knot]?.jones || 'N/A';
-                        break;
-                    case 'alexander':
-                        alexanderPoly = polynomialData[knot]?.alexander || 'N/A';
-                        break;
-                    case 'homflypt':
-                        homflyptPoly = polynomialData[knot]?.homflypt || 'N/A';
-                        break;
+                if (poly.value === 'jones') {
+                    jonesPoly = polynomialData[knot].jones;
+                }
+                if (poly.value === 'alexander') {
+                    alexanderPoly = polynomialData[knot].alexander;
+                }
+                if (poly.value === 'homflypt') {
+                    homflyptPoly = polynomialData[knot].homflypt;
                 }
             });
-            
+
             document.getElementById('jones-poly').textContent = jonesPoly;
             document.getElementById('alexander-poly').textContent = alexanderPoly;
             document.getElementById('homflypt-poly').textContent = homflyptPoly;
+        });
+
+        const homflyptExamples = {
+            '1': 'H[1] := -A^(-4) + 1/(A^2*q^2) + q^2/A^2',
+            '2': 'H[2] := -A^(-6) - 1/(A^6*q^8) + 1/(A^4*q^8) + 1/(A^8*q^6) - 1/(A^6*q^6) + 1/(A^4*q^4) - 1/(A^6*q^2) + 1/(A^4*q^2) + q^4/A^4',
+            '3': 'H[3] := -A^(-8) + 1/(A^10*q^20) - 1/(A^8*q^20) - 1/(A^12*q^18) + 1/(A^10*q^18) - 1/(A^8*q^18) + 1/(A^6*q^18) + 1/(A^10*q^16) - 1/(A^8*q^16) - 1/(A^8*q^14) + 1/(A^6*q^14) + 1/(A^10*q^12) - 2/(A^8*q^12) + 1/(A^6*q^12) + 1/(A^10*q^10) - 2/(A^8*q^10) + 1/(A^6*q^10) + 1/(A^10*q^8) - 1/(A^8*q^8) + 1/(A^6*q^6) - 1/(A^8*q^4) + 1/(A^6*q^4) - 1/(A^8*q^2) + 1/(A^6*q^2) + q^6/A^6'
+        };
+
+        document.getElementById('view-homflypt').addEventListener('click', function() {
+            const r = document.getElementById('r-select').value;
+            const poly = homflyptExamples[r] || 'Polynomial not available';
+            document.getElementById('homflypt-poly').textContent = poly;
+        });
+
+        const kauffmanExamples = {
+            '1': 'K[1] := 1',
+            '2': 'K[2] := t + t^2',
+            '3': 'K[3] := t^2 + t^3 + 1'
+        };
+
+        document.getElementById('view-kauffman').addEventListener('click', function() {
+            const r = document.getElementById('r-kauffman').value;
+            const poly = kauffmanExamples[r] || 'Polynomial not available';
+            document.getElementById('kauffman-poly').textContent = poly;
         });
     </script>
 </body>
