@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Knot Theory - </title>
+    <title>Knot Theory - XYZ</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Welcome to Knot Polynomials</h1>
+        <h1>Welcome to Colored Knot Polynomials Website</h1>
         <p>Sponsored by </p>
     </header>
     <nav>
@@ -57,8 +57,12 @@
     <section id="draw-knot">
         <h2>Draw a Knot</h2>
         <p>Use the tool below to draw a knot and get its polynomials:</p>
-        <canvas id="knot-canvas" width="600" height="400" style="border:1px solid #000000;"></canvas>
+        <canvas id="knot-canvas" width="600" height="400"></canvas>
         <button id="draw-button">Draw Knot</button>
+        <div id="draw-results">
+            <h3>Drawn Knot:</h3>
+            <p id="drawn-knot-info">No knot drawn yet.</p>
+        </div>
     </section>
     <section id="projects">
         <h2>Research & Projects</h2>
@@ -71,9 +75,10 @@
         </form>
     </section>
     <footer>
-        <p>Sponsored by  | Owner: Vivek</p>
+        <p>Sponsored by  | Owner: Vivek Kumar Singh </p>
     </footer>
     <script src="script.js"></script>
 </body>
 </html>
+
 
