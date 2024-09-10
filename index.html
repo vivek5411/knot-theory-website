@@ -4,11 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Knot Theory - XYZ</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #f4f4f4;
+            padding: 20px;
+            text-align: center;
+        }
+
+        #website-name {
+            color: #0044cc; /* Blue color for the website name */
+        }
+
+        nav {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        section {
+            padding: 20px;
+        }
+
+        #polynomials {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        #results p {
+            font-weight: bold;
+        }
+
+        #results span {
+            color: #e74c3c; /* Red color for polynomial values */
+        }
+
+        footer {
+            background-color: #f4f4f4;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1 id="website-name">Welcome to  Colored  Knot Polynomials</h1>
+        <h1 id="website-name">Welcome to Colored Knot Polynomials</h1>
     </header>
     <nav>
         <ul>
@@ -74,62 +139,63 @@
         </form>
     </section>
     <footer>
-        <p>Owner: Vivek Kumar Singh</p>
+        <p>Owner: Vivek Kumar Singh </p>
     </footer>
-    <script src="script.js"></script>
+    <script>
+        document.getElementById('view-polynomials').addEventListener('click', function() {
+            const knot = document.getElementById('knot-select').value;
+            const polynomials = document.querySelectorAll('input[name="polynomial"]:checked');
+            
+            const polynomialData = {
+                '3_1': {
+                    jones: 't + t^3',
+                    alexander: '1 - t + t^2',
+                    homflypt: '1 + t^2',
+                },
+                '4_1': {
+                    jones: 't^2 + 1',
+                    alexander: '1 + t^2 - t^4',
+                    homflypt: '1 + t + t^2 + t^3',
+                },
+                '5_1': {
+                    jones: 't^4 + t^2 + 1',
+                    alexander: '1 - t + t^2 - t^3 + t^4',
+                    homflypt: '1 + t + t^2 + t^3 + t^4',
+                },
+                '6_1': {
+                    jones: '1',
+                    alexander: '1',
+                    homflypt: '1',
+                },
+                '6_2': {
+                    jones: 't + t^3 + t^4',
+                    alexander: '1 - t + t^2 - t^3 + t^4 - t^5',
+                    homflypt: '1 + t + t^2 + t^3 + t^4 + t^5',
+                }
+            };
+            
+            let jonesPoly = '';
+            let alexanderPoly = '';
+            let homflyptPoly = '';
+            
+            polynomials.forEach(poly => {
+                switch(poly.value) {
+                    case 'jones':
+                        jonesPoly = polynomialData[knot]?.jones || 'N/A';
+                        break;
+                    case 'alexander':
+                        alexanderPoly = polynomialData[knot]?.alexander || 'N/A';
+                        break;
+                    case 'homflypt':
+                        homflyptPoly = polynomialData[knot]?.homflypt || 'N/A';
+                        break;
+                }
+            });
+            
+            document.getElementById('jones-poly').textContent = jonesPoly;
+            document.getElementById('alexander-poly').textContent = alexanderPoly;
+            document.getElementById('homflypt-poly').textContent = homflyptPoly;
+        });
+    </script>
 </body>
 </html>
-document.getElementById('view-polynomials').addEventListener('click', function() {
-    const knot = document.getElementById('knot-select').value;
-    const polynomials = document.querySelectorAll('input[name="polynomial"]:checked');
-    
-    const polynomialData = {
-        '3_1': {
-            jones: 't + t^3',
-            alexander: '1 - t + t^2',
-            homflypt: '1 + t^2',
-        },
-        '4_1': {
-            jones: 't^2 + 1',
-            alexander: '1 + t^2 - t^4',
-            homflypt: '1 + t + t^2 + t^3',
-        },
-        '5_1': {
-            jones: 't^4 + t^2 + 1',
-            alexander: '1 - t + t^2 - t^3 + t^4',
-            homflypt: '1 + t + t^2 + t^3 + t^4',
-        },
-        '6_1': {
-            jones: '1',
-            alexander: '1',
-            homflypt: '1',
-        },
-        '6_2': {
-            jones: 't + t^3 + t^4',
-            alexander: '1 - t + t^2 - t^3 + t^4 - t^5',
-            homflypt: '1 + t + t^2 + t^3 + t^4 + t^5',
-        }
-    };
-    
-    let jonesPoly = '';
-    let alexanderPoly = '';
-    let homflyptPoly = '';
-    
-    polynomials.forEach(poly => {
-        switch(poly.value) {
-            case 'jones':
-                jonesPoly = polynomialData[knot]?.jones || 'N/A';
-                break;
-            case 'alexander':
-                alexanderPoly = polynomialData[knot]?.alexander || 'N/A';
-                break;
-            case 'homflypt':
-                homflyptPoly = polynomialData[knot]?.homflypt || 'N/A';
-                break;
-        }
-    });
-    
-    document.getElementById('jones-poly').textContent = jonesPoly;
-    document.getElementById('alexander-poly').textContent = alexanderPoly;
-    document.getElementById('homflypt-poly').textContent = homflyptPoly;
-});
