@@ -180,6 +180,13 @@
     </section>
     <footer>
         <p>Owner: Vivek Kumar Singh</p>
+        <div id="contact-details">
+            <h3>Contact Information:</h3>
+            <p>Name: Vivek Kumar Singh</p>
+            <p>Designation: Postdoc. Associate at Center for Quantum and Topological Systems
+, New York University Abu Dhabi</p>
+            <p>Email: <a href="mailto:vks2024@nyu.edu">vks2024@nyu.edu</a></p>
+        </div>
     </footer>
     <script>
         document.getElementById('view-polynomials').addEventListener('click', function() {
@@ -214,9 +221,9 @@
                 }
             };
             
-            let jonesPoly = 'N/A';
-            let alexanderPoly = 'N/A';
-            let homflyptPoly = 'N/A';
+            let jonesPoly = '';
+            let alexanderPoly = '';
+            let homflyptPoly = '';
             
             polynomials.forEach(poly => {
                 if (poly.value === 'jones') {
@@ -248,9 +255,9 @@
         });
 
         const kauffmanExamples = {
-            '1': 'K[1] := 1',
-            '2': 'K[2] := t + t^2',
-            '3': 'K[3] := t^2 + t^3 + 1'
+            '1': 'K[1] :=x ',
+            '2': 'K[2] := y',
+            '3': 'K[3] :=z '
         };
 
         document.getElementById('view-kauffman').addEventListener('click', function() {
