@@ -82,8 +82,7 @@
             <li><a href="#home">Home</a></li>
             <li><a href="#polynomials">Knot Polynomials</a></li>
             <li><a href="#homflypt">Colored HOMFLY-PT Polynomials</a></li>
-            <li><a href="#kauffman">Kauffman Polynomials</a></li>
-            <li><a href="#draw-knot">Draw a Knot</a></li>
+            <li><a href="#kauffman">Colored Kauffman Polynomials</a></li>
             <li><a href="#projects">Research & Projects</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -101,8 +100,8 @@
             <option value="3_1">3<sub>1</sub> (Trefoil Knot)</option>
             <option value="4_1">4<sub>1</sub> (Figure-Eight Knot)</option>
             <option value="5_1">5<sub>1</sub> (Cinquefoil Knot)</option>
-            <option value="6_1">6<sub>1</sub> (Unknot)</option>
-            <option value="6_2">6<sub>2</sub> (Another 6-Crossing Knot)</option>
+            <option value="6_1">6<sub>1</sub> ()</option>
+            <option value="6_2">6<sub>2</sub> ()</option>
             <!-- Add more options up to 7 crossings if needed -->
         </select>
         
@@ -141,7 +140,7 @@
         </div>
     </section>
     <section id="kauffman">
-        <h2>Kauffman Polynomials (K[r])</h2>
+        <h2> Colored Kauffman Polynomials (K[r])</h2>
         <p>Input a parameter <code>r</code> to view the polynomial:</p>
         
         <label for="r-kauffman">Select r:</label>
@@ -157,17 +156,6 @@
             <h3>Kauffman Polynomial:</h3>
             <p id="kauffman-poly"></p>
         </div>
-    </section>
-    <section id="draw-knot">
-        <h2>Draw a Knot</h2>
-        <p>Use the tool below to draw a knot and get its polynomials:</p>
-        <canvas id="knot-canvas" width="600" height="400"></canvas>
-        <button id="draw-button">Draw Knot</button>
-        <div id="draw-results">
-            <h3>Drawn Knot:</h3>
-            <p id="drawn-knot-info">No knot drawn yet.</p>
-        </div>
-    </section>
     <section id="projects">
         <h2>Research & Projects</h2>
         <p>Learn more about the ongoing research in knot theory and topological quantum computation.</p>
