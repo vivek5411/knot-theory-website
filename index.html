@@ -169,8 +169,7 @@
     
     <h3>Kauffman Polynomial:</h3>
     <div id="kauffman-poly">Select a knot and color to see the polynomial.</div>
-
-    <script>
+   <script>
         // Knot Data
         const knotData = {
             '3': ['3_1'],
@@ -180,7 +179,6 @@
             '7': ['7_1', '7_2', '7_3', '7_4', '7_5', '7_6', '7_7'],
             '8': ['8_1', '8_21']
         };
-    <script>
         // Polynomial Data
         const polynomialData = {
             '3_1': {
@@ -214,7 +212,8 @@
             // Add more knots and their polynomials here as needed
         };
 
-       const knotGroupSelect = document.getElementById('knot-group-select');
+       // Populate Knot Selector based on group selection
+        const knotGroupSelect = document.getElementById('knot-group-select');
         const knotSelect = document.getElementById('knot-select');
 
         function populateKnots() {
