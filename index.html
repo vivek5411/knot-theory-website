@@ -83,10 +83,7 @@
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#polynomials">Knot Polynomials</a></li>
-            <li><a href="#homflypt">Colored HOMFLY-PT Polynomials</a></li>
-            <li><a href="#kauffman">Colored Kauffman Polynomials</a></li>
-            <li><a href="#projects">Research & Projects</a></li>
-            
+         <li><a href="#projects">Research & Projects</a></li>
              <li><a href="#Collaborators">Collaborators</a></li>
             <li><a href="#Citation">Citation</a></li>
 
@@ -112,62 +109,50 @@
             <!-- Add more options up to 7 crossings if needed -->
         </select>
         
-        <fieldset id="polynomial-options">
-            <legend>Select Polynomials:</legend>
-            <label><input type="checkbox" name="polynomial" value="homflypt">Colored HOMFLY-PT Polynomial</label>
-            <label><input type="checkbox" name="polynomial" value="homflypt"> Colored Kauffman Polynomial</label>
+      <fieldset id="polynomial-options">
+    <legend>Select Polynomials:</legend>
+    <label><input type="checkbox" name="polynomial" value="homflypt"> Colored HOMFLY-PT Polynomial</label>
+    <label><input type="checkbox" name="polynomial" value="kauffman"> Colored Kauffman Polynomial</label>
+</fieldset>
 
-        </fieldset>
-        
-        </div>
-    </section>
-    <section id="homflypt">
-        <h2>Colored HOMFLY-PT Polynomials</h2>
-        <p>Input a parameter <code>r</code> to view the polynomial:</p>
-        
-        <label for="r-select">Select r:</label>
-        <select id="r-select">
-          <option value="1">r = 1</option>
-            <option value="2">r = 2</option>
-            <option value="3">r = 3</option>
-            <option value="4">r = 3</option>
-             <option value="5">r = 3</option>
-            <option value="6">r = 3</option>
-           <option value="7">r = 3</option>
-             <option value="8">r = 3</option>
-            <option value="9">r = 3</option>
-            <option value="10">r = 3</option>
-        </select>
-        <button id="view-polynomials">View Polynomials</button>
-        
-         <div id="results">
-            <h3>Polynomials:</h3>
-            <p>HOMFLY-PT Polynomial: <span id="homflypt-poly"></span></p>
-    </section>
-    <section id="kauffman">
-        <h2> Colored Kauffman Polynomials (K[r])</h2>
-        <p>Input a parameter <code>r</code> to view the polynomial:</p>
-        
-        <label for="r-kauffman">Select r:</label>
-        <select id="r-kauffman">
-            <option value="1">r = 1</option>
-            <option value="2">r = 2</option>
-            <option value="3">r = 3</option>
-            <option value="4">r = 3</option>
-             <option value="5">r = 3</option>
-            <option value="6">r = 3</option>
-           <option value="7">r = 3</option>
-             <option value="8">r = 3</option>
-            <option value="9">r = 3</option>
-            <option value="10">r = 3</option>
-</select>
-        
-        <button id="view-kauffman">View Kauffman Polynomial</button>
-        
-        <div id="kauffman-results">
-            <h3>Kauffman Polynomial:</h3>
-            <p id="kauffman-poly"></p>
-        </div>
+<section id="homflypt">
+    <h2>Colored HOMFLY-PT Polynomials</h2>
+    <p>Input a parameter <code>r</code> to view the polynomial:</p>
+
+    <label for="r-select">Select r:</label>
+    <select id="r-select">
+        <option value="1">r = 1</option>
+        <option value="2">r = 2</option>
+        <option value="3">r = 3</option>
+        <option value="4">r = 4</option>
+        <option value="5">r = 5</option>
+        <option value="6">r = 6</option>
+        <option value="7">r = 7</option>
+        <option value="8">r = 8</option>
+        <option value="9">r = 9</option>
+        <option value="10">r = 10</option>
+    </select>
+    <button id="view-polynomials">View Polynomials</button>
+
+    <div id="results">
+        <h3>Polynomials:</h3>
+        <p>HOMFLY-PT Polynomial: <span id="homflypt-poly"></span></p>
+    </div>
+</section>
+
+<section id="kauffman">
+    <h2>Colored Kauffman Polynomials (K[r])</h2>
+    <p>Input a parameter <code>r</code> to view the polynomial:</p>
+
+    <label for="r-kauffman">Select r:</label>
+    <select id="r-kauffman">
+        <option value="1">r = 1</option>
+        <option value="2">r = 2</option>
+        <option value="3">r = 3</option>
+        <option value="4">r = 4</option>
+        <option value="5">r = 5</option>
+        <option value="6">r = 6</option>
+
     <section id="projects">
         <h2>Research & Projects</h2>
         <p>Learn more about the ongoing research in knot theory and topological quantum computation.</p>
