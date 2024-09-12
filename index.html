@@ -97,10 +97,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Knot Polynomials</title>
+    <title>Knot Polynomials Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1, h3 {
+            color: #333;
+        }
+        #homflypt-poly, #kauffman-poly {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #f9f9f9;
+        }
+        button {
+            margin: 5px;
+            padding: 8px 12px;
+            cursor: pointer;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+        .color-1 { background-color: #ff4d4d; }
+        .color-2 { background-color: #4dff4d; }
+        .color-3 { background-color: #4d4dff; }
+        .color-4 { background-color: #ffcc4d; }
+    </style>
 </head>
 <body>
-
     <h1>Knot Polynomials Viewer</h1>
     
     <!-- Knot Selector -->
@@ -111,9 +136,12 @@
         <!-- Add more knots here -->
     </select>
 
-    <!-- Buttons to View Polynomials -->
-    <button class="view-poly" data-type="homflypt">View HOMFLY-PT Polynomial</button>
-    <button class="view-poly" data-type="kauffman">View Kauffman Polynomial</button>
+    <!-- Buttons to View Polynomials by Color -->
+    <h3>View Polynomials by Color:</h3>
+    <button class="color-1" data-color="1">Color 1</button>
+    <button class="color-2" data-color="2">Color 2</button>
+    <button class="color-3" data-color="3">Color 3</button>
+    <button class="color-4" data-color="4">Color 4</button>
 
     <!-- Display Areas for Polynomials -->
     <h3>HOMFLY-PT Polynomial:</h3>
@@ -155,17 +183,17 @@
             // Add more knots and their polynomials here as needed
         };
 
-        // View polynomials dynamically
-        document.querySelectorAll('.view-poly').forEach(button => {
+        // View polynomials by color
+        document.querySelectorAll('.color-button').forEach(button => {
             button.addEventListener('click', function() {
                 const knot = document.getElementById('knot-select').value;
-                const type = this.dataset.type;
-                const poly = polynomialData[knot]?.[type] || `${type === 'homflypt' ? 'HOMFLY-PT' : 'Kauffman'} Polynomial not available`;
-                document.getElementById(`${type}-poly`).textContent = poly;
+                const color = this.dataset.color;
+                const homflyptPoly = polynomialData[knot]?.homflypt || 'HOMFLY-PT Polynomial not available';
+                const kauffmanPoly = polynomialData[knot]?.kauffman || 'Kauffman Polynomial not available';
+                document.getElementById('homflypt-poly').textContent = `Color ${color}: ${homflyptPoly}`;
+                document.getElementById('kauffman-poly').textContent = `Color ${color}: ${kauffmanPoly}`;
             });
         });
     </script>
-
-
 </body>
 </html>
