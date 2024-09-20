@@ -95,6 +95,22 @@
 </head>
 <body>
 
+    <header>
+    <h1>Welcome to Colored Knot Polynomials</h1>
+    <p>This website combines two important theoretical developments: integrable models (in both low and higher dimensions) and the rapidly growing field of quantum computation (currently under development!).</p>
+</header>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#polynomials">Knot Polynomials</a></li>
+         <li><a href="#projects">Research & Projects</a></li>
+             <li><a href="#Collaborators">Collaborators</a></li>
+            <li><a href="#Citation">Citation</a></li>
+
+         <li><a href="#contact">Contact</a></li>
+            
+        </ul>
+    </nav>
     <h1>Knot Polynomials Viewer</h1>
 
     <!-- Knot Group Selector -->
@@ -147,7 +163,14 @@
             '8': Array.from({ length: 21 }, (_, i) => `8_${i + 1}`),
             '9': Array.from({ length: 49 }, (_, i) => `9_${i + 1}`),
             '10': Array.from({ length: 165 }, (_, i) => `10_${i + 1}`),
-          arborescent: ['A_1', 'A_2', 'A_3'] // Example arborescent knots
+          arborescent: [
+                '8_18', // 8-crossing
+                '9_34', '9_39', '9_40', '9_41', '9_47', '9_49', // 9-crossing
+                '10_100', '10_101', '10_102', '10_103', '10_104', '10_105', '10_106', '10_107', '10_108', '10_109', 
+                '10_110', '10_111', '10_112', '10_113', '10_114', '10_115', '10_116', '10_117', '10_118', '10_119', 
+                '10_120', '10_121', '10_122', '10_123', // 10-crossing 100-123
+                '10_155', '10_156', '10_157', '10_158', '10_159', '10_160', '10_161', '10_162', '10_163', '10_164', '10_165' // 10-crossing 155-165
+            ] // Example arborescent knots
         };
 
         knotGroupSelect.addEventListener('change', function() {
