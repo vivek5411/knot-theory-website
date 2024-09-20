@@ -138,13 +138,16 @@
         const knotSelect = document.getElementById('knot-select');
         const knotGroupSelect = document.getElementById('knot-group-select');
 
-        const knotGroups = {
-            3: ['3_1'],
-            4: ['4_1', '4_2'],
-            5: ['5_1', '5_2'],
-            6: ['6_1', '6_2', '6_3'],
-            7: ['7_1', '7_2', '7_3'],
-            arborescent: ['A_1', 'A_2', 'A_3'] // Example arborescent knots
+        const knotGroups ={
+            '3': Array.from({ length: 1 }, (_, i) => `3_${i + 1}`),
+            '4': Array.from({ length: 1 }, (_, i) => `4_${i + 1}`),
+            '5': Array.from({ length: 2 }, (_, i) => `5_${i + 1}`),
+            '6': Array.from({ length: 3 }, (_, i) => `6_${i + 1}`),
+            '7': Array.from({ length: 7 }, (_, i) => `7_${i + 1}`),
+            '8': Array.from({ length: 21 }, (_, i) => `8_${i + 1}`),
+            '9': Array.from({ length: 49 }, (_, i) => `9_${i + 1}`),
+            '10': Array.from({ length: 165 }, (_, i) => `10_${i + 1}`),
+          arborescent: ['A_1', 'A_2', 'A_3'] // Example arborescent knots
         };
 
         knotGroupSelect.addEventListener('change', function() {
