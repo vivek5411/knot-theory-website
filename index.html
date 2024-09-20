@@ -113,8 +113,7 @@
     </nav>
     <h1>Knot Polynomials Viewer</h1>
 
-    <!-- Knot Group Selector -->
-    <label for="knot-group-select">Select Number of Crossings:</label>
+   <label for="knot-group-select">Select Number of Crossings:</label>
     <select id="knot-group-select">
         <option value="3">3 Crossings</option>
         <option value="4">4 Crossings</option>
@@ -142,6 +141,11 @@
     <button class="color-button color-10" data-color="10">Color 10</button>
     <button class="arborescent" data-color="arborescent">Arborescent Knots</button>
 
+    <!-- Polynomial Display -->
+    <h3>Polynomials:</h3>
+    <p><strong>HOMFLY-PT Polynomial:</strong> <span id="homflypt-poly">Select a knot and color.</span></p>
+    <p><strong>Kauffman Polynomial:</strong> <span id="kauffman-poly">Select a knot and color.</span></p>
+
     <!-- Property Buttons -->
     <h3>Knot Properties:</h3>
     <button class="property-button">Properties
@@ -150,50 +154,11 @@
     </button>
 
     <script>
-        // Update knot options based on crossing selection
-        const knotSelect = document.getElementById('knot-select');
-        const knotGroupSelect = document.getElementById('knot-group-select');
-
-        const knotGroups ={
-            '3': Array.from({ length: 1 }, (_, i) => `3_${i + 1}`),
-            '4': Array.from({ length: 1 }, (_, i) => `4_${i + 1}`),
-            '5': Array.from({ length: 2 }, (_, i) => `5_${i + 1}`),
-            '6': Array.from({ length: 3 }, (_, i) => `6_${i + 1}`),
-            '7': Array.from({ length: 7 }, (_, i) => `7_${i + 1}`),
-            '8': Array.from({ length: 21 }, (_, i) => `8_${i + 1}`),
-            '9': Array.from({ length: 49 }, (_, i) => `9_${i + 1}`),
-            '10': Array.from({ length: 165 }, (_, i) => `10_${i + 1}`),
-          arborescent: [
-                '8_18', // 8-crossing
-                '9_34', '9_39', '9_40', '9_41', '9_47', '9_49', // 9-crossing
-                '10_100', '10_101', '10_102', '10_103', '10_104', '10_105', '10_106', '10_107', '10_108', '10_109', 
-                '10_110', '10_111', '10_112', '10_113', '10_114', '10_115', '10_116', '10_117', '10_118', '10_119', 
-                '10_120', '10_121', '10_122', '10_123', // 10-crossing 100-123
-                '10_155', '10_156', '10_157', '10_158', '10_159', '10_160', '10_161', '10_162', '10_163', '10_164', '10_165' // 10-crossing 155-165
-            ] // Example arborescent knots
-        };
-
-        knotGroupSelect.addEventListener('change', function() {
-            const selectedGroup = knotGroupSelect.value;
-            const knots = knotGroups[selectedGroup] || [];
-            knotSelect.innerHTML = '';
-            knots.forEach(knot => {
-                const option = document.createElement('option');
-                option.value = knot;
-                option.textContent = knot;
-                knotSelect.appendChild(option);
-            });
-        });
-
-        // Initially trigger the event to populate knot options
-        knotGroupSelect.dispatchEvent(new Event('change'));
-    </script>
-     </script>
         // Polynomial Data
         const polynomialData = {
             '3_1': {
                 homflypt: {
-                    '1': ` -A^(-4) + 1/(A^2*q^2) + q^2/A^2;`,
+                    '1': `-A^(-4) + 1/(A^2*q^2) + q^2/A^2;`,
                     '2': `-A^(-6) - 1/(A^6*q^8) + 1/(A^4*q^8) + 1/(A^8*q^6) - 1/(A^6*q^6) + 1/(A^4*q^4) - 1/(A^6*q^2) + 1/(A^4*q^2) + q^4/A^4;`
                 },
                 kauffman: {
@@ -234,12 +199,31 @@
             // Continue adding more knots here
         };
 
-        // Populate Knot Selector based on group selection
-        const knotGroupSelect = document.getElementById('knot-group-select');
-        const knotSelect = document.getElementById('knot-select');
+        // Knot Groups
+        const knotGroups = {
+            '3': Array.from({ length: 1 }, (_, i) => `3_${i + 1}`),
+            '4': Array.from({ length: 1 }, (_, i) => `4_${i + 1}`),
+            '5': Array.from({ length: 2 }, (_, i) => `5_${i + 1}`),
+            '6': Array.from({ length: 3 }, (_, i) => `6_${i + 1}`),
+            '7': Array.from({ length: 7 }, (_, i) => `7_${i + 1}`),
+            '8': Array.from({ length: 21 }, (_, i) => `8_${i + 1}`),
+            '9': Array.from({ length: 49 }, (_, i) => `9_${i + 1}`),
+            '10': Array.from({ length: 165 }, (_, i) => `10_${i + 1}`),
+            'arborescent': [
+                '8_18', // 8-crossing
+                '9_34', '9_39', '9_40', '9_41', '9_47', '9_49', // 9-crossing
+                '10_100', '10_101', '10_102', '10_103', '10_104', '10_105', '10_106', '10_107', '10_108', '10_109', 
+                '10_110', '10_111', '10_112', '10_113', '10_114', '10_115', '10_116', '10_117', '10_118', '10_119', 
+                '10_120', '10_121', '10_122', '10_123', // 10-crossing 100-123
+                '10_155', '10_156', '10_157', '10_158', '10_159', '10_160', '10_161', '10_162', '10_163', '10_164', '10_165' // 10-crossing 155-165
+            ]
+        };
 
-       
-        function populateKnots() {
+        // Update knot options based on crossing selection
+        const knotSelect = document.getElementById('knot-select');
+        const knotGroupSelect = document.getElementById('knot-group-select');
+
+        knotGroupSelect.addEventListener('change', function() {
             const selectedGroup = knotGroupSelect.value;
             const knots = knotGroups[selectedGroup] || [];
             knotSelect.innerHTML = '';
@@ -249,10 +233,10 @@
                 option.textContent = knot;
                 knotSelect.appendChild(option);
             });
-        }
+        });
 
-        knotGroupSelect.addEventListener('change', populateKnots);
-        populateKnots(); // Populate on page load
+        // Initially trigger the event to populate knot options
+        knotGroupSelect.dispatchEvent(new Event('change'));
 
         // Handle color button clicks
         const colorButtons = document.querySelectorAll('.color-button');
