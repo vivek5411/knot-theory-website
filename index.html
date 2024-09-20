@@ -188,5 +188,84 @@
         // Initially trigger the event to populate knot options
         knotGroupSelect.dispatchEvent(new Event('change'));
     </script>
+     </script>
+        // Polynomial Data
+        const polynomialData = {
+            '3_1': {
+                homflypt: {
+                    '1': ` -A^(-4) + 1/(A^2*q^2) + q^2/A^2;`,
+                    '2': `-A^(-6) - 1/(A^6*q^8) + 1/(A^4*q^8) + 1/(A^8*q^6) - 1/(A^6*q^6) + 1/(A^4*q^4) - 1/(A^6*q^2) + 1/(A^4*q^2) + q^4/A^4;`
+                },
+                kauffman: {
+                    '1': ` ;`,
+                    '2': ` ;`
+                }
+            },
+            '8_18': {
+                homflypt: {
+                    '1': `HOMFLY-PT for 8_18 in Color 1`,
+                    '2': `HOMFLY-PT for 8_18 in Color 2`
+                },
+                kauffman: {
+                    '1': `Kauffman for 8_18 in Color 1`,
+                    '2': `Kauffman for 8_18 in Color 2`
+                }
+            },
+            '9_34': {
+                homflypt: {
+                    '1': `HOMFLY-PT for 9_34 in Color 1`,
+                    '2': `HOMFLY-PT for 9_34 in Color 2`
+                },
+                kauffman: {
+                    '1': `Kauffman for 9_34 in Color 1`,
+                    '2': `Kauffman for 9_34 in Color 2`
+                }
+            },
+            '10_100': {
+                homflypt: {
+                    '1': `HOMFLY-PT for 10_100 in Color 1`,
+                    '2': `HOMFLY-PT for 10_100 in Color 2`
+                },
+                kauffman: {
+                    '1': `Kauffman for 10_100 in Color 1`,
+                    '2': `Kauffman for 10_100 in Color 2`
+                }
+            }
+            // Continue adding more knots here
+        };
+
+        // Populate Knot Selector based on group selection
+        const knotGroupSelect = document.getElementById('knot-group-select');
+        const knotSelect = document.getElementById('knot-select');
+
+       
+        function populateKnots() {
+            const selectedGroup = knotGroupSelect.value;
+            const knots = knotGroups[selectedGroup] || [];
+            knotSelect.innerHTML = '';
+            knots.forEach(knot => {
+                const option = document.createElement('option');
+                option.value = knot;
+                option.textContent = knot;
+                knotSelect.appendChild(option);
+            });
+        }
+
+        knotGroupSelect.addEventListener('change', populateKnots);
+        populateKnots(); // Populate on page load
+
+        // Handle color button clicks
+        const colorButtons = document.querySelectorAll('.color-button');
+        colorButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const color = this.getAttribute('data-color');
+                const knot = knotSelect.value;
+                const homflyptPoly = polynomialData[knot]?.homflypt[color] || 'HOMFLY-PT Polynomial not available';
+                const kauffmanPoly = polynomialData[knot]?.kauffman[color] || 'Kauffman Polynomial not available';
+                document.getElementById('homflypt-poly').textContent = homflyptPoly;
+                document.getElementById('kauffman-poly').textContent = kauffmanPoly;
+            });
+        });
+    </script>
 </body>
 </html>
