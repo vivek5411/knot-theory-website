@@ -6,97 +6,98 @@
     <title>Knot Polynomials Viewer</title>
    
      <style>
- 
-    body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-    background: linear-gradient(120deg, #ff9a9e, #fad0c4, #fcb69f);
-    background-size: 400% 400%;
-    animation: gradientAnimation 15s ease infinite;
-    background-image: url('394.png'); /* Replace YOUR_BASE64_SVG_KNOT with the actual base64-encoded SVG knot */
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
-    background-blend-mode: overlay; /* Blend the knot with the gradient */
-} 
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(120deg, #ff9a9e, #fad0c4, #fcb69f);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            
+            /* Embedded base64-encoded image */
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAB/oAAAgACAYAAAAmMTumAAAAAXNSR0IArs4c6QAAIABJREFUeF7s3QecVOW5+PHnPVN2ZztbYFk6');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            background-blend-mode: overlay;
+        }
 
-@keyframes gradientAnimation {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-h1, h3 {
-    color: #333;
-}
+        h1, h3 {
+            color: #333;
+        }
 
-select, button {
-    margin: 5px;
-    padding: 8px 12px;
-    cursor: pointer;
-    color: white;
-    border: none;
-    border-radius: 4px;
-}
+        select, button {
+            margin: 5px;
+            padding: 8px 12px;
+            cursor: pointer;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
 
-select {
-    color: #333;
-}
+        select {
+            color: #333;
+        }
 
-.color-1 { background-color: #ff4d4d; }
-.color-2 { background-color: #4dff4d; }
-.color-3 { background-color: #4d4dff; }
-.color-4 { background-color: #ffcc4d; }
-.color-5 { background-color: #ff4d8c; }
-.color-6 { background-color: #4dff8c; }
-.color-7 { background-color: #8c4dff; }
-.color-8 { background-color: #ff8c4d; }
-.color-9 { background-color: #4d8cff; }
-.color-10 { background-color: #8cff4d; }
-.arborescent { background-color: #cc33ff; }
+        .color-1 { background-color: #ff4d4d; }
+        .color-2 { background-color: #4dff4d; }
+        .color-3 { background-color: #4d4dff; }
+        .color-4 { background-color: #ffcc4d; }
+        .color-5 { background-color: #ff4d8c; }
+        .color-6 { background-color: #4dff8c; }
+        .color-7 { background-color: #8c4dff; }
+        .color-8 { background-color: #ff8c4d; }
+        .color-9 { background-color: #4d8cff; }
+        .color-10 { background-color: #8cff4d; }
+        .arborescent { background-color: #cc33ff; }
 
-.knot-group {
-    display: flex;
-    flex-wrap: wrap;
-}
+        .knot-group {
+            display: flex;
+            flex-wrap: wrap;
+        }
 
-.knot-group button {
-    width: 60px;
-    height: 60px;
-    font-size: 16px;
-    margin: 5px;
-    text-align: center;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+        .knot-group button {
+            width: 60px;
+            height: 60px;
+            font-size: 16px;
+            margin: 5px;
+            text-align: center;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-.property-button {
-    background-color: #333;
-    color: white;
-    padding: 10px 15px;
-    margin: 5px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
+        .property-button {
+            background-color: #333;
+            color: white;
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
 
-.sub-property {
-    display: none;
-    margin-left: 10px;
-    margin-top: 5px;
-    background-color: #ffcc4d;
-    color: white;
-    padding: 5px;
-    border-radius: 4px;
-}
+        .sub-property {
+            display: none;
+            margin-left: 10px;
+            margin-top: 5px;
+            background-color: #ffcc4d;
+            color: white;
+            padding: 5px;
+            border-radius: 4px;
+        }
 
-.property-button:hover .sub-property {
-    display: block;
-}
-  <style>
+        .property-button:hover .sub-property {
+            display: block;
+        }
+    </style>
     
 </head>
 <body>
