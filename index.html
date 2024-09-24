@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Knot Polynomials Viewer</title>
-  <style>
+ <style>
     /* General Page Styling */
     body {
         font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -39,15 +39,16 @@
 
     /* Button Styling */
     button {
-        margin: 15px;
         padding: 15px 20px;
         font-size: 18px;
         border: none;
         border-radius: 5px;
         cursor: pointer;
         transition: all 0.3s ease;
-        display: block;
-        margin: 20px;
+        display: inline-flex; /* Changed to inline-flex */
+        justify-content: center; /* Center the button content */
+        align-items: center; /* Center the button content */
+        margin: 5px; /* Adjust margin as needed */
     }
 
     .color-1 { background-color: #ff4d4d; }
@@ -71,20 +72,17 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        flex-wrap: wrap; /* Allows buttons to wrap on smaller screens */
+        flex-wrap: nowrap; /* Ensure items stay in one row */
+        overflow-x: auto; /* Allows horizontal scrolling if necessary */
         margin-top: 50px;
     }
 
     .knot-group button {
         width: 70px;
         height: 70px;
-        margin: 10px;
         border-radius: 50%;
         font-size: 14px;
         color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
 
     /* Keyframes for Animations */
