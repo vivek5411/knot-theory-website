@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Knot Polynomials Viewer</title>
-   
-     <style>
-      body {
+   <style>
+        /* General Page Styling */
+        body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -50,64 +50,48 @@
             margin: 20px auto;
         }
 
-        select {
-            color: #333;
-        }
-
         .color-1 { background-color: #ff4d4d; }
         .color-2 { background-color: #4dff4d; }
         .color-3 { background-color: #4d4dff; }
         .color-4 { background-color: #ffcc4d; }
         .color-5 { background-color: #ff4d8c; }
         .color-6 { background-color: #4dff8c; }
-        .color-7 { background-color: #8c4dff; }
+         .color-7 { background-color: #8c4dff; }
         .color-8 { background-color: #ff8c4d; }
         .color-9 { background-color: #4d8cff; }
         .color-10 { background-color: #8cff4d; }
-        .arborescent { background-color: #cc33ff; }
+        button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        }
 
+        /* Knot Group Section */
         .knot-group {
             display: flex;
+            justify-content: center;
             flex-wrap: wrap;
+            margin-top: 50px;
         }
 
         .knot-group button {
-            width: 60px;
-            height: 60px;
-            font-size: 16px;
-            margin: 5px;
-            text-align: center;
+            width: 70px;
+            height: 70px;
+            margin: 10px;
             border-radius: 50%;
+            font-size: 14px;
+            color: white;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .property-button {
-            background-color: #333;
-            color: white;
-            padding: 10px 15px;
-            margin: 5px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .sub-property {
-            display: none;
-            margin-left: 10px;
-            margin-top: 5px;
-            background-color: #ffcc4d;
-            color: white;
-            padding: 5px;
-            border-radius: 4px;
-        }
-
-        .property-button:hover .sub-property {
-            display: block;
+        /* Keyframes for Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
-    
+   
 </head>
 <body>
 
