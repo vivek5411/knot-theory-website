@@ -104,65 +104,23 @@
             <li><a href="#home">Home</a></li>
             <li><a href="#polynomials">Knot Polynomials</a></li>
          <li><a href="#projects">Research & Projects</a></li>
-             
-    </ul>
+                    <li><a href="team.html">Team Members</a></li>
+</ul>
     </nav>
-    <nav>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Members</title>
+</head>
+<body>
+    <h1>Our Team Members</h1>
     <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#polynomials">Knot Polynomials</a></li>
-        <li><a href="#projects">Research & Projects</a></li>
-        <li><a href="#team">Team Members</a>
-            <ul class="dropdown">
-                <li><a href="#" onclick="showAffiliation('teamMember1')">John Doe</a></li>
-                <li><a href="#" onclick="showAffiliation('teamMember2')">Jane Smith</a></li>
-                <!-- Add more team members as needed -->
-            </ul>
-        </li>
+        <li><a href="team-member1.html">John Doe</a></li>
+        <li><a href="team-member2.html">Jane Smith</a></li>
+        <!-- Add more team members as needed -->
     </ul>
-</nav>
-
-<div id="affiliations" style="display:none;">
-    <p id="teamMember1" style="display:none;">John Doe - Affiliation: XYZ University</p>
-    <p id="teamMember2" style="display:none;">Jane Smith - Affiliation: ABC Institute</p>
-</div>
-
-<!-- CSS for Dropdown -->
-<style>
-    .dropdown {
-        display: none;
-        position: absolute;
-        background-color: #f9f9f9;
-        box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-        z-index: 1;
-    }
+</body>
     
-    li:hover .dropdown {
-        display: block;
-    }
-
-    .dropdown li {
-        list-style-type: none;
-    }
-
-    .dropdown a {
-        display: block;
-        padding: 8px;
-        text-decoration: none;
-    }
-</style>
-
-<!-- JavaScript for Showing Affiliation -->
-<script>
-    function showAffiliation(memberId) {
-        var affiliation = document.getElementById(memberId);
-        if (affiliation.style.display === "none") {
-            affiliation.style.display = "block";
-        } else {
-            affiliation.style.display = "none";
-        }
-    }
-</script>
     <h1>Knot Polynomials Viewer</h1>
 
    <label for="knot-group-select">Select Number of Crossings:</label>
