@@ -66,20 +66,64 @@
                     '2': `q^2*A + q*A^2 + A^3;`,
                     '3': `q^3 + q^2*A + q*A^2;`
                 }
+            },
+            '4_1': {
+                homflypt: {
+                    '1': `A^(-2) + A^(-4)*q^2 - A^(-2)*q^4;`,
+                    '2': `-A^(-2) + A^(-4)*q^2 + A^(-4)*q^4;`,
+                    '3': `-A^(-4) + A^(-2)*q^2 - A^(-2)*q^4;`
+                },
+                kauffman: {
+                    '1': `A^3 + A^2*q + A*q^2 + q^3;`,
+                    '2': `A^2 + A*q + q^2;`,
+                    '3': `A^3 + A*q + q^2;`
+                }
+            },
+            '5_1': {
+                homflypt: {
+                    '1': `A^(-6) + q^2*A^(-4) + q^4*A^(-2) - q^6;`,
+                    '2': `A^(-4) + q^2*A^(-2) - q^4;`,
+                    '3': `-A^(-2) + q^4 - q^6;`
+                },
+                kauffman: {
+                    '1': `q^5 + A^4 + A^3*q + A^2*q^2 + A*q^3;`,
+                    '2': `A^4 + A*q + q^2;`,
+                    '3': `q^5 + A^3 + A^2*q;`
+                }
             }
+            // Add more knots with more crossing numbers as needed
         };
 
         // Populate Knot Select Dropdown
         const knotSelect = document.getElementById('knot-select');
-        for (const knot of Object.keys(polynomialData)) {
-            const option = document.createElement('option');
-            option.value = knot;
-            option.textContent = knot;
-            knotSelect.appendChild(option);
-        }
+        const knotGroupSelect = document.getElementById('knot-group-select');
+
+        const updateKnotSelect = () => {
+            const selectedCrossing = knotGroupSelect.value;
+            knotSelect.innerHTML = ''; // Clear existing options
+
+            for (const knot in polynomialData) {
+                const crossingNumber = knot.split('_')[0]; // Get the crossing number
+                if (crossingNumber === selectedCrossing) {
+                    const option = document.createElement('option');
+                    option.value = knot;
+                    option.textContent = knot;
+                    knotSelect.appendChild(option);
+                }
+            }
+
+            if (knotSelect.options.length === 0) {
+                const option = document.createElement('option');
+                option.value = '';
+                option.textContent = 'No knots available';
+                knotSelect.appendChild(option);
+            } else {
+                knotSelect.selectedIndex = 0; // Select the first knot by default
+                updatePolynomials(); // Update the displayed polynomials
+            }
+        };
 
         // Update Polynomial Display
-        const knotGroupSelect = document.getElementById('knot-group-select');
         const homflyptPoly = document.getElementById('homflypt-poly');
         const kauffmanPoly = document.getElementById('kauffman-poly');
 
@@ -93,7 +137,11 @@
             }
         };
 
-        knotGroupSelect.addEventListener('change', updatePolynomials);
+        // Event Listeners
+        knotGroupSelect.addEventListener('change', () => {
+            updateKnotSelect(); // Update knot options on crossing number change
+        });
+
         knotSelect.addEventListener('change', updatePolynomials);
 
         // Color Buttons Event Listeners
@@ -101,10 +149,13 @@
         colorButtons.forEach(button => {
             button.addEventListener('click', (event) => {
                 const selectedColor = event.target.getAttribute('data-color');
-                knotGroupSelect.value = selectedColor;
-                updatePolynomials();
+                knotGroupSelect.value = selectedColor; // Set the selected color
+                updatePolynomials(); // Update polynomials based on the new color
             });
         });
+
+        // Initialize
+        updateKnotSelect(); // Populate initial knots based on default selection
     </script>
 </body>
 </html>
