@@ -15,7 +15,6 @@
         h1, h3 {
             text-align: center;
         }
-        /* Add any additional styling here */
     </style>
 </head>
 <body>
@@ -38,27 +37,20 @@
     <select id="knot-select"></select>
 
     <h3>View Polynomials by Color:</h3>
-    <button class="color-button color-1" data-color="1">Color 1</button>
-    <button class="color-button color-2" data-color="2">Color 2</button>
-    <button class="color-button color-3" data-color="3">Color 3</button>
-    <button class="color-button color-4" data-color="4">Color 4</button>
-    <button class="color-button color-5" data-color="5">Color 5</button>
-    <button class="color-button color-6" data-color="6">Color 6</button>
-    <button class="color-button color-7" data-color="7">Color 7</button>
-    <button class="color-button color-8" data-color="8">Color 8</button>
-    <button class="color-button color-9" data-color="9">Color 9</button>
-    <button class="color-button color-10" data-color="10">Color 10</button>
-    <button class="arborescent" data-color="arborescent">Non-Arborescent Knots</button>
+    <button class="color-button" data-color="1">Color 1</button>
+    <button class="color-button" data-color="2">Color 2</button>
+    <button class="color-button" data-color="3">Color 3</button>
+    <button class="color-button" data-color="4">Color 4</button>
+    <button class="color-button" data-color="5">Color 5</button>
+    <button class="color-button" data-color="6">Color 6</button>
+    <button class="color-button" data-color="7">Color 7</button>
+    <button class="color-button" data-color="8">Color 8</button>
+    <button class="color-button" data-color="9">Color 9</button>
+    <button class="color-button" data-color="10">Color 10</button>
 
     <h3>Polynomials:</h3>
     <p><strong>Colored-HOMFLY-PT Polynomial:</strong> <span id="homflypt-poly">Select a knot and color.</span></p>
     <p><strong>Kauffman Polynomial:</strong> <span id="kauffman-poly">Select a knot and color.</span></p>
-
-    <h3>Knot Properties:</h3>
-    <button class="property-button">Properties
-        <div class="sub-property">Determinant</div>
-        <div class="sub-property">HOMFLY-PT Polynomial</div>
-    </button>
 
     <script>
         // Polynomial Data
@@ -91,7 +83,7 @@
         const homflyptPoly = document.getElementById('homflypt-poly');
         const kauffmanPoly = document.getElementById('kauffman-poly');
 
-        knotGroupSelect.addEventListener('change', () => {
+        const updatePolynomials = () => {
             const selectedKnot = knotSelect.value;
             const selectedColor = knotGroupSelect.value;
 
@@ -99,17 +91,10 @@
                 homflyptPoly.textContent = polynomialData[selectedKnot].homflypt[selectedColor] || 'No data available';
                 kauffmanPoly.textContent = polynomialData[selectedKnot].kauffman[selectedColor] || 'No data available';
             }
-        });
+        };
 
-        knotSelect.addEventListener('change', () => {
-            const selectedKnot = knotSelect.value;
-            const selectedColor = knotGroupSelect.value;
-
-            if (polynomialData[selectedKnot]) {
-                homflyptPoly.textContent = polynomialData[selectedKnot].homflypt[selectedColor] || 'No data available';
-                kauffmanPoly.textContent = polynomialData[selectedKnot].kauffman[selectedColor] || 'No data available';
-            }
-        });
+        knotGroupSelect.addEventListener('change', updatePolynomials);
+        knotSelect.addEventListener('change', updatePolynomials);
 
         // Color Buttons Event Listeners
         const colorButtons = document.querySelectorAll('.color-button');
@@ -117,23 +102,7 @@
             button.addEventListener('click', (event) => {
                 const selectedColor = event.target.getAttribute('data-color');
                 knotGroupSelect.value = selectedColor;
-                const selectedKnot = knotSelect.value;
-
-                if (polynomialData[selectedKnot]) {
-                    homflyptPoly.textContent = polynomialData[selectedKnot].homflypt[selectedColor] || 'No data available';
-                    kauffmanPoly.textContent = polynomialData[selectedKnot].kauffman[selectedColor] || 'No data available';
-                }
-            });
-        });
-
-        // Properties Button Event Listener
-        const propertyButtons = document.querySelectorAll('.property-button');
-        propertyButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const subProperties = button.querySelectorAll('.sub-property');
-                subProperties.forEach(subProperty => {
-                    subProperty.style.display = subProperty.style.display === 'none' ? 'block' : 'none';
-                });
+                updatePolynomials();
             });
         });
     </script>
